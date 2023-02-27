@@ -1,4 +1,4 @@
-from tools import *
+from typing import *
 
 '''
 1144. 递减元素使数组呈锯齿状

@@ -1,4 +1,4 @@
-import tools
+from typing import *
 '''
 剑指 Offer II 095. 最长公共子序列 == 1143. 最长公共子序列
 
