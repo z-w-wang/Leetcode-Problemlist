@@ -36,6 +36,14 @@ print(max(dp[-1]))
 
 可以用常量来减小空间复杂度。
 样例只通过27%，不知道为什么。
+
+AC做法
+dp = [[0, 0] for _ in range(n + 1)]
+for i in range(n):
+    dp[i + 1][0] = max(dp[i])
+    dp[i + 1][1] = max(dp[i][0], dp[i][2]) + int(line2[i])
+    dp[i + 1][2] = max(dp[i][0], dp[i][1]) + int(line3[i])
+print(max(dp[-1]))
 '''
 n = int(input())
 line2 = input().split(" ")
