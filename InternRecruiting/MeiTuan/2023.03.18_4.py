@@ -22,3 +22,41 @@
 样例输出：
 2 5
 '''
+# 0%
+def max_items_and_min_cost(N, X, Y, items):
+    items.sort()  # Sort items by original price in ascending order
+    dp = [[[0] * (X+1) for _ in range(Y+1)] for _ in range(N+1)]
+
+    for i in range(1, N+1):
+        for j in range(Y+1):
+            for k in range(X+1):
+                dp[i][j][k] = dp[i-1][j][k]  # Not buying the current item
+                if k >= items[i-1][0]:
+                    # Buying the current item without a discount coupon
+                    dp[i][j][k] = max(dp[i][j][k], dp[i-1][j][k-items[i-1][0]] + 1)
+                if j >= 1 and k >= items[i-1][1]:
+                    # Buying the current item with a discount coupon
+                    dp[i][j][k] = max(dp[i][j][k], dp[i-1][j-1][k-items[i-1][1]] + 1)
+
+    count = 0
+    cost = 0
+    for j in range(Y+1):
+        for k in range(X+1):
+            if dp[N][j][k] > count:
+                count = dp[N][j][k]
+                cost = k
+
+    return count, cost
+
+# Sample input
+N = 3
+X = 5
+Y = 1
+items = [
+    (4, 3),
+    (3, 1),
+    (6, 5)
+]
+
+# Sample output
+print(max_items_and_min_cost(N, X, Y, items))  # Output: (2, 5)

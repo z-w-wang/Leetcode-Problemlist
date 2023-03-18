@@ -23,3 +23,26 @@
 样例输出：
 2
 '''
+
+# 27%
+def max_enemies(enemies, A, B):
+    enemies.sort()
+    left = right = 0
+    max_count = 0
+    window = []
+    while right < len(enemies):
+
+        while window and (enemies[right][0] - window[0][0] > A or enemies[right][1] - window[0][1] > B):
+            window.pop(0)
+        window.append(enemies[right])
+        right += 1
+
+        max_count = max(max_count, len(window))
+    return max_count
+
+
+if __name__ == "__main__":
+    enemies = [[1, 1], [1, 2], [1, 3]]
+    A, B = 1, 1
+    res = max_enemies(enemies, A, B)
+    print(res)

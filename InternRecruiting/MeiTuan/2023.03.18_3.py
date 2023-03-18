@@ -21,3 +21,46 @@ acca
 样例输出：
 aaaa
 '''
+# 27%
+def make_palindrome(s):
+    n = len(s)
+    mid = n // 2
+    i = 0
+    j = n - 1
+    changes = 0
+
+    s_list = list(s)
+
+    while i < mid:
+        if s_list[i] < s_list[j]:
+            s_list[j] = s_list[i]
+            changes += 1
+        elif s_list[i] > s_list[j]:
+            s_list[i] = s_list[j]
+            changes += 1
+        i += 1
+        j -= 1
+
+    if changes == 0:
+        i = 0
+        j = n - 1
+        while i < mid:
+            if s_list[i] != 'a':
+                s_list[i] = 'a'
+                s_list[j] = 'a'
+                break
+            i += 1
+            j -= 1
+        return ''.join(s_list)
+    elif changes == 1:
+        s_list[n // 2] = 'a'
+        return ''.join(s_list)
+    elif changes > 2:
+        return ""
+    return ''.join(s_list)
+
+if __name__ == '__main__':
+    print("abcda", " -> ", make_palindrome("abcda"))
+    print("abcba", " -> ", make_palindrome("abcba"))
+    print("abba", " -> ", make_palindrome("abba"))
+    print("abcd", " -> ", make_palindrome("abcd"))

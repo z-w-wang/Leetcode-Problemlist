@@ -20,3 +20,29 @@
 样例输出：
 5
 '''
+# 100%
+def max_length(colors, K):
+    left = right = 0
+    max_len = 0
+    window = dict()
+    while right < len(colors):
+        if colors[right] in window:
+            window[colors[right]] += 1
+        else:
+            window[colors[right]] = 1
+        while len(window) > K:
+            window[colors[left]] -= 1
+            if window[colors[left]] == 0:
+                del window[colors[left]]
+            left += 1
+        max_len = max(max_len, right - left + 1)
+        right += 1
+    max_len = max(max_len, right - left)
+    return max_len
+
+
+if __name__ == "__main__":
+    colors = [1, 2, 3, 2, 1, 4, 5, 1]
+    K = 3
+    res = max_length(colors, K)
+    print(res)
