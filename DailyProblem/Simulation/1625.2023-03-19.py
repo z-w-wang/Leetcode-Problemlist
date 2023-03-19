@@ -10,6 +10,8 @@ https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-op
 
 由裴蜀定理xb - yn = z → z = gcd(b, n)
 可以以gcd(b, n)为间隔轮转到n
+
+每次变换让其字典序最小，只需让s_list[1]最小即可，时间复杂度减小到O(n * k^2), k < 10
 '''
 class Solution:
     def findLexSmallestString(self, s: str, a: int, b: int) -> str:
