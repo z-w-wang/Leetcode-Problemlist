@@ -23,3 +23,7 @@ from functools import *
 @cache
 @lru_cache
 '''
+from itertools import *
+'''
+accumulate
+'''
